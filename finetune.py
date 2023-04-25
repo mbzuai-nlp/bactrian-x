@@ -36,6 +36,7 @@ def parse_args():
     parser.add_argument("--learning_rate", type=float, default=1e-4)
     parser.add_argument("--cutoff_len", type=int, default=512)
     parser.add_argument("--val_set_size", type=int, default=1000)
+    parser.add_argument("--logging_steps", type=int, default=50)
     parser.add_argument("--eval_steps", type=int, default=500)
     parser.add_argument("--save_steps", type=int, default=500)
     parser.add_argument("--resume_from_checkpoint", type=str, default=None)
@@ -208,7 +209,7 @@ def train():
             num_train_epochs = args.num_epochs,
             learning_rate = args.learning_rate,
             fp16 = True,
-            logging_steps = 40,
+            logging_steps = args.logging_steps,
             optim = "adamw_torch",
             evaluation_strategy = "steps" if args.val_set_size > 0 else "no",
             save_strategy = "steps",
@@ -220,7 +221,6 @@ def train():
             ddp_find_unused_parameters = False if ddp else None,
             group_by_length = args.group_by_length,
             report_to = "wandb" if args.use_wandb else None,
-            # run_name=wandb_run_name if use_wandb else None,
         ),
         data_collator = transformers.DataCollatorForSeq2Seq(
             tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True

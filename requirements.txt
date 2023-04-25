@@ -6,6 +6,7 @@ black
 black[jupyter]
 datasets
 git+https://github.com/huggingface/peft.git
-git+https://github.com/huggingface/transformers.git
+transformers>=4.28.0
 sentencepiece
 gradio
+wandb

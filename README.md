@@ -45,7 +45,7 @@ Data preperation:
 We use 52 languages of [mBART-50](https://arxiv.org/abs/2008.00401). Each dataset, monolingual models (Bactrian-ISO), and multilingual model (Bactrian-X) can be downloaded below. Please note that we keep updating this repository. Number of languages will be more than 52 in future, and the current models are in 7B-size. We are welcome any researchers who want to pretrain larger models.
 
 
-| No | Languages       | Code and Data                                                               | Model (7B)      |
+| No | Languages       | Code and Data                                                               | Adapter (7B)      |
 | ---|---------------- | ------------------------------------------------------------------------    | --------------- |
 |  0 | 52 languages    | X (Below)                                                                   | [Bactrian-X ]() |
 |  1 | Afrikaans       | [af_ZA](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/af/train)  | [Bactrian-af](https://huggingface.co/haonan-li/bactrian-af-7b-lora) |
@@ -121,7 +121,7 @@ Models are trained with the following hyperparameters:
 ```bash
 torchrun --nproc_per_node=4 --master_port=1234 finetune.py \
 --base_model 'decapoda-research/llama-7b-hf' \
-    --data_path 'MBZUAI/Bactrian-X' \
+    --data_path 'mbzuai/bactrian-x' \
     --lang '{lang}' \
     --output_dir './output/{lang}' \
     --batch_size 128 \
@@ -149,7 +149,7 @@ python generate.py \
     --load_8bit \
     --base_model 'decapoda-research/llama-7b-hf' \
     --lora_weights './output/{lang}' \
-    --share_gradio True
+    --share_gradio 
 ```
 
 ### Checkpoint export 
