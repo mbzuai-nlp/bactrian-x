@@ -57,6 +57,7 @@ We use 52 languages of [mBART-50](https://arxiv.org/abs/2008.00401). Each datase
 |  7 | English         | [en_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/en/train)  | [Bactrian-en](https://huggingface.co/haonan-li/bactrian-en-7b-lora) |
 |  8 | Spanish         | [es_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/es/train)  | [Bactrian-es](https://huggingface.co/haonan-li/bactrian-es-7b-lora) |
 |  9 | Estonian        | [et_EE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/et/train)  | [Bactrian-et](https://huggingface.co/haonan-li/bactrian-et-7b-lora) |
+| 10 | Persian         | [fa_IR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fa/train)  | [Bactrian-fa](https://huggingface.co/haonan-li/bactrian-fa-7b-lora) |
 | 11 | Finnish         | [fi_FI](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fi/train)  | [Bactrian-fi](https://huggingface.co/haonan-li/bactrian-fi-7b-lora) |
 | 12 | French          | [fr_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fr/train)  | [Bactrian-fr](https://huggingface.co/haonan-li/bactrian-fr-7b-lora) |
 | 13 | Galician        | [gl_ES](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/gl/train)  | [Bactrian-gl](https://huggingface.co/haonan-li/bactrian-gl-7b-lora) |
