@@ -12,7 +12,7 @@
 ## :fire: News
 <!---
 -->
-* **[2023.04.28]** 52-in-1 Bactrian-X model is now available [here](https://huggingface.co/MBZUAI/Bactrian-X).
+* **[2023.04.28]** 52-in-1 Bactrian-X model is now available [here](https://huggingface.co/MBZUAI/bactrian-x-7b-lora).
 * **[2023.04.24]** Monolingual models in 52 languages are released, and are available [here](https://huggingface.co/haonan-li).
 * **[2023.04.22]** Data in 52 languages are released, and are available [here](https://huggingface.co/datasets/MBZUAI/Bactrian-X).
 
