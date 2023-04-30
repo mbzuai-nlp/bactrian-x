@@ -41,7 +41,7 @@ Specifically, this repository contains:
 Data preparation:
 
 1. English Instructions: The English instuctions were obtained from [alpaca-52k](https://github.com/tatsu-lab/stanford_alpaca), and [dolly-15k](https://github.com/databrickslabs/dolly/tree/master/data), and saved to [instructions.json](https://github.com/MBZUAI-nlp/Bactrian-X/data/instructions.json).
-2. Instruction Translation: The instructions (and inputs) were translated into 51 languages using the Google Translation API (conducted in April 2023).
+2. Instruction Translation: The instructions (and inputs) were translated into 51 languages using the Google Translate API (conducted in April 2023).
 3. Output Generation: We generate output from `gpt-3.5-turbo` for each language (conducted in April 2023).
 
 
