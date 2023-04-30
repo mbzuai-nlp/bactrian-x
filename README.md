@@ -12,9 +12,9 @@
 ## :fire: News
 <!---
 -->
-* **[2023.04.28]** The training of 52-in-1 Bactrian-X model is still in progress, but the latest checkpoint is available [here](https://huggingface.co/MBZUAI/bactrian-x-7b-lora). Use it on your own risk. 
+* **[2023.04.28]** The training of the 52-in-1 Bactrian-X model is still in progress, but the latest checkpoint is available [here](https://huggingface.co/MBZUAI/bactrian-x-7b-lora). Use it at your own risk. 
 * **[2023.04.24]** Monolingual models in 52 languages are released, and are available [here](https://huggingface.co/haonan-li).
-* **[2023.04.22]** Data in 52 languages are released, and are available [here](https://huggingface.co/datasets/MBZUAI/Bactrian-X).
+* **[2023.04.22]** Release of data in 52 languages [here](https://huggingface.co/datasets/MBZUAI/Bactrian-X).
 
 
 ## Overview
@@ -22,13 +22,13 @@
 <img src="https://github.com/fajri91/eval_picts/blob/master/BactrianX_full.jpg" width="1000" align="center">
 </h3>
 
-Bactrian-X is a 7B multilingual model fine-tuned from the LLaMA 7B model (using [low-rank adaptation/LoRA](https://arxiv.org/pdf/2106.09685.pdf)) on 3.4M instruction-following demonstrations. The 3.4M instances are obtained from 52 languages of [alpaca-52k](https://github.com/tatsu-lab/stanford_alpaca), and [dolly-15k](https://github.com/databrickslabs/dolly/tree/master/data) (52 languages x 67k instances = 3.4M instances).
+Bactrian-X is a 7B multilingual model fine-tuned from the LLaMA 7B model (using [low-rank adaptation/LoRA](https://arxiv.org/pdf/2106.09685.pdf)) on 3.4M instructions. The 3.4M instances were obtained from the 52 languages of [alpaca-52k](https://github.com/tatsu-lab/stanford_alpaca), and [dolly-15k](https://github.com/databrickslabs/dolly/tree/master/data) (52 languages x 67k instances = 3.4M instances).
 
 Specifically, this repository contains:
 
 - The [67K instruction data](#data-and-model-release) in 52 languages.
 - Multilingual [Bactrian-X](#data-and-model-release), trained on combined language-instruction pairs (3.4M instances).
-- 52 monolingual Bactrian models, trained on each 52 languages (67k instances).
+- 52 monolingual Bactrian models, trained on each of the 52 languages (67k instances).
 - The code for [training the model](#model-training-and-inference) using [low-rank adaptation (LoRA)](https://arxiv.org/pdf/2106.09685.pdf).
 
 **Usage and License Notices**: Bactrian-X is intended and licensed for research use only. The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes. 
@@ -36,16 +36,16 @@ Specifically, this repository contains:
 
 ## Data and Model Release
 
-**Note**: We are keep updating this repository. Number of languages will be more than 52 in future, and the current models are mostly only in 7B-size. We are welcome any researchers who want to contribute larger models.
+**Note**: We are continually updating this repository. The number of languages will be more than 52 in the future, and current models are mostly only 7B in size. We welcome any collaborators who are willing to contribute larger models.
 
-Data preperation:
+Data preparation:
 
-1. English Instructions: The English instuctions are obtained from [alpaca-52k](https://github.com/tatsu-lab/stanford_alpaca), and [dolly-15k](https://github.com/databrickslabs/dolly/tree/master/data), saved to [instructions.json](https://github.com/MBZUAI-nlp/Bactrian-X/data/instructions.json).
-2. Instruction Translation: The instructions (and inputs) are translated into 51 languages using Google Translation API (conducted on April 2023).
-3. Output Generation: We generate output from `gpt-3.5-turbo` for each language (conducted on April 2023).
+1. English Instructions: The English instuctions were obtained from [alpaca-52k](https://github.com/tatsu-lab/stanford_alpaca), and [dolly-15k](https://github.com/databrickslabs/dolly/tree/master/data), and saved to [instructions.json](https://github.com/MBZUAI-nlp/Bactrian-X/data/instructions.json).
+2. Instruction Translation: The instructions (and inputs) were translated into 51 languages using the Google Translation API (conducted in April 2023).
+3. Output Generation: We generate output from `gpt-3.5-turbo` for each language (conducted in April 2023).
 
 
-We use 52 languages of [mBART-50](https://arxiv.org/abs/2008.00401). Each dataset, monolingual models (Bactrian-ISO), and multilingual model (Bactrian-X) can be downloaded below. 
+We use the 52 languages of [mBART-50](https://arxiv.org/abs/2008.00401). The datasets, monolingual models (Bactrian-ISO), and multilingual model (Bactrian-X) can be downloaded below. 
 
 
 
@@ -132,7 +132,7 @@ Models are trained with the following hyperparameters:
 | lora_r          | 16              | 64         |
 | lora_alpha      | 16              | 16         |
 
-Below is a command that trains a LLaMA-7B adapter with our datasets in specific language(s). Replace `<lang_iso>` with a list of (one or more) language iso code separated by comma `,` (e.g., `en,zh` for `English` and `Chinese`), and `<your_output_dir>` with where you want to store your outputs.
+Below is a command to train a LLaMA-7B adapter with our datasets in specific language(s). Replace `<lang_iso>` with a list of (one or more) ISO-639-2 language codes separated by commas (e.g., `en,zh` for `English` and `Chinese`), and `<your_output_dir>` to specify where to store the outputs.
 
 ```bash
 python finetune.py \
@@ -157,7 +157,7 @@ python finetune.py \
 
 ### Inference
 
-This is an example code that loads both foundation model and Bactrian LoRA weights from the Hugging Face model hub, and runs a Gradio interface for inference on a specified input. 
+This is example code that loads both the foundation model and Bactrian LoRA weights from the Hugging Face model hub, and runs a Gradio interface for inference on a specified input. 
 ```bash
 python generate.py \
     --load_8bit \
@@ -169,12 +169,12 @@ python generate.py \
 ### Checkpoint export 
 
 To merge the LoRA weights back into the base model for export to Hugging Face format and to PyTorch `state_dicts`, go to [Alpaca-LoRA](https://github.com/tloen/alpaca-lora).
-They should help users who want to run inference in projects like [llama.cpp](https://github.com/ggerganov/llama.cpp) or [alpaca.cpp](https://github.com/antimatter15/alpaca.cpp).
+This should help users who want to run inference in projects like [llama.cpp](https://github.com/ggerganov/llama.cpp) or [alpaca.cpp](https://github.com/antimatter15/alpaca.cpp).
 
 
 ## Citation
 
-Please cite the repo if you use the data, model or code in this repo. Our paper will be released very soon.
+Please cite the repo if you use the data, model or code in this repo. A paper will be released very soon.
 
 ```
 @misc{bactrian,
