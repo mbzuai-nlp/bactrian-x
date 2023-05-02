@@ -3,7 +3,7 @@ import sys
 import argparse
 import torch
 import transformers
-from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaTokenizer, Trainer, GenerationConfig, LlamaForCausalLM
 from peft import PeftModel
 
 from utils.callbacks import Iteratorize, Stream
@@ -29,7 +29,7 @@ def parse_args():
     parser.add_argument("--base_model", type=str, help="Path to pretrained model", required=True)
     parser.add_argument("--lora_weights", type=str, default="", required=True)
     parser.add_argument("--template_dir", type=str, default="./templates")
-    parser.add_argument("--prompt_template_name", type=str, default="")
+    parser.add_argument("--prompt_template_name", type=str, default="bactrian")
     parser.add_argument("--server_name", type=str, default="127.0.0.1")
 
     args = parser.parse_args()
@@ -40,9 +40,13 @@ def main():
     assert (args.base_model), "Please specify a --base_model, e.g. --base_model='decapoda-research/llama-7b-hf'"
 
     prompter = Prompter(args.prompt_template_name, args.template_dir)
-    tokenizer = LlamaTokenizer.from_pretrained(args.base_model)
+    # Todo: better handle
+    tokenizer_class = LlamaTokenizer if 'llama' in args.base_model else AutoTokenizer
+    model_class = LlamaForCausalLM if 'llama' in args.base_model else AutoModelForCausalLM
+
+    tokenizer = tokenizer_class.from_pretrained(args.base_model)
     if device == "cuda":
-        model = LlamaForCausalLM.from_pretrained(
+        model = model_class.from_pretrained(
             args.base_model,
             load_in_8bit=args.load_8bit,
             torch_dtype=torch.float16,
@@ -54,7 +58,7 @@ def main():
             torch_dtype=torch.float16,
         )
     elif device == "mps":
-        model = LlamaForCausalLM.from_pretrained(
+        model = model_class.from_pretrained(
             args.base_model,
             device_map={"": device},
             torch_dtype=torch.float16,
@@ -66,7 +70,7 @@ def main():
             torch_dtype=torch.float16,
         )
     else:
-        model = LlamaForCausalLM.from_pretrained(
+        model = model_class.from_pretrained(
             args.base_model, device_map={"": device}, low_cpu_mem_usage=True
         )
         model = PeftModel.from_pretrained(

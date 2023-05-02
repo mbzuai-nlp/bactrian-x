@@ -47,5 +47,11 @@ class Prompter(object):
             print(res)
         return res
 
-    def get_response(self, output: str) -> str:
-        return output.split(self.template["response_split"])[1].strip()
+    def get_response(self, output: str, without_response_title: bool=True) -> str:
+        if without_response_title:
+            return output.split(self.template["response_split"])[1].strip()
+        else:
+            return self.template["response_split"] + output.split(self.template["response_split"])[1].strip()
+
+    def get_input_text(self, output: str) -> str:
+        return output.split(self.template["response_split"])[0].strip()

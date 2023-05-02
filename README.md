@@ -126,8 +126,8 @@ Models are trained with the following hyperparameters:
 | Hyper-parameter | Bactrian-{lang} | Bactrian-X |
 | --------------- | --------------- | ---------- |
 | batch_size      | 128             | 256        |
-| num_epochs      | 5               | 2          |
-| learning_rate   | 3e-4            | 2e-4       |
+| num_epochs      | 10              | 10         |
+| learning_rate   | 3e-4            | 3e-4       |
 | cutoff_len      | 512             | 512        |
 | lora_r          | 16              | 64         |
 | lora_alpha      | 16              | 16         |
@@ -142,14 +142,14 @@ python finetune.py \
     --output_dir <your_output_dir> \
     --batch_size 128 \
     --micro_batch_size 32 \
-    --num_epochs 5 \
+    --num_epochs 10 \
     --learning_rate 3e-4 \
     --cutoff_len 512 \
     --val_set_size 2000 \
     --lora_r 16 \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
-    --lora_target_modules '[q_proj,k_proj,v_proj,o_proj]' \
+    --lora_target_modules 'q_proj,k_proj,v_proj,o_proj' \
     --train_on_inputs \
     --group_by_length
 ```
