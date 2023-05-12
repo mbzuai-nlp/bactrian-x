@@ -80,9 +80,10 @@ def main():
         )
 
     # unwind broken decapoda-research config
-    model.config.pad_token_id = tokenizer.pad_token_id = 0  # unk
-    model.config.bos_token_id = 1
-    model.config.eos_token_id = 2
+    if 'llama' in args.base_model:
+        model.config.pad_token_id = tokenizer.pad_token_id = 0  # unk
+        model.config.bos_token_id = 1
+        model.config.eos_token_id = 2
 
     if not args.load_8bit:
         model.half()  # seems to fix bugs for some users.
@@ -198,7 +199,7 @@ def main():
             )
         ],
         title=" Bactrian-X",
-        description="Bactrian-X is a LLaMA model finetuned to follow instructions. It is trained on the [Stanford Alpaca-52k](https://github.com/tatsu-lab/stanford_alpaca) and [databricks-dolly-15k](https://github.com/databrickslabs/dolly/tree/master/data) data translated into many languages, and makes use of the Huggingface LLaMA implementation, and [alpaca-lora](https://github.com/tloen/alpaca-lora).",
+        description="Bactrian-X is a multilingual model finetuned to follow instructions. It is trained on the [Stanford Alpaca-52k](https://github.com/tatsu-lab/stanford_alpaca) and [databricks-dolly-15k](https://github.com/databrickslabs/dolly/tree/master/data) data translated into many languages, and makes use of the Huggingface model implementation, and [alpaca-lora](https://github.com/tloen/alpaca-lora).",
     ).queue().launch(server_name=args.server_name, share=args.share_gradio)
 
 

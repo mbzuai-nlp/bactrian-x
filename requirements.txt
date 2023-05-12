@@ -6,7 +6,9 @@ black
 black[jupyter]
 datasets
 git+https://github.com/huggingface/peft.git
-transformers>=4.28.0
+git+https://github.com/huggingface/transformers.git
 sentencepiece
 gradio
 wandb
+shortuuid
+ray
