@@ -12,10 +12,9 @@
 ## :fire: News
 <!---
 -->
-* **[2023.05.11]** Bloom-based [Bactrian-X-bloom-7b1-lora](https://huggingface.co/MBZUAI/bactrian-x-bloom-7b1-lora) is available. The training is stll in progress, use it at your own risk. 
-* **[2023.04.28]** Llama-based [Bactrian-X-llama-7b-lora](https://huggingface.co/MBZUAI/bactrian-x-llama-7b-lora) is available. The training is stll in progress, use it at your own risk. 
+* **[2023.05.18]** Bloom-based [Bactrian-X-bloom-7b1-lora](https://huggingface.co/MBZUAI/bactrian-x-bloom-7b1-lora) is available. 
+* **[2023.05.18]** Llama-based [Bactrian-X-llama-7b-lora](https://huggingface.co/MBZUAI/bactrian-x-llama-7b-lora) is available. 
 * **[2023.04.22]** Release of data in 52 languages [here](https://huggingface.co/datasets/MBZUAI/Bactrian-X).
-<!-- * **[2023.04.24]** Monolingual models in 52 languages are released, and are available [here](https://huggingface.co/haonan-li). -->
 
 ## Overview
 <h3 align="center">
