@@ -12,8 +12,8 @@
 ## :fire: News
 <!---
 -->
-* **[2023.05.18]** Bloom-based [Bactrian-X-bloom-7b1-lora](https://huggingface.co/MBZUAI/bactrian-x-bloom-7b1-lora) is available. 
-* **[2023.05.18]** Llama-based [Bactrian-X-llama-7b-lora](https://huggingface.co/MBZUAI/bactrian-x-llama-7b-lora) is available. 
+* **[2023.05.25]** The preprint of our paper is [here](https://arxiv.org/abs/2305.15011).
+* **[2023.05.25]** Bactrian-X [llama-7b-lora](https://huggingface.co/MBZUAI/bactrian-x-llama-7b-lora), [llama-13b-lora](https://huggingface.co/MBZUAI/bactrian-x-llama-13b-lora), [bloom-7b1-lora](https://huggingface.co/MBZUAI/bactrian-x-bloom-7b1-lora) are available. 
 * **[2023.04.22]** Release of data in 52 languages [here](https://huggingface.co/datasets/MBZUAI/Bactrian-X).
 
 ## Overview
@@ -113,6 +113,7 @@ The datasets, Bactrian-ISO code, and the LLM models langauge coverage were liste
 With our dataset and [Low-Rank Adaptation (LoRA)](https://arxiv.org/abs/2106.09685), we present a family of multilingual and monolingual models based on [LLaMA](https://arxiv.org/abs/2302.13971) and [BLOOM](https://arxiv.org/abs/2211.05100).
 Our instruction-tuned multilingual Bactrian-X models are available at: 
 * [MBZUAI/bactrian-x-llama-7b-lora](https://huggingface.co/MBZUAI/bactrian-x-llama-7b-lora) 
+* [MBZUAI/bactrian-x-llama-13b-lora](https://huggingface.co/MBZUAI/bactrian-x-llama-13b-lora)
 * [MBZUAI/bactrian-x-bloom-7b1-lora](https://huggingface.co/MBZUAI/bactrian-x-bloom-7b1-lora)
 
 **Note**: We are continually updating this repository. The number of languages will be more than 52 in the future, and the current models are mostly only 7B in size. We welcome any collaborators who are willing to contribute larger models.
@@ -135,7 +136,7 @@ Models are trained with the following hyperparameters:
 | batch_size      | 128        |
 | num_epochs      | 10         |
 | learning_rate   | 3e-4       |
-| cutoff_len      | 512        |
+| cutoff_len      | 768        |
 | lora_r          | 64         |
 | lora_alpha      | 16         |
 
@@ -189,13 +190,13 @@ Please check output examples [here](eval/README.md).
 Please cite the repo if you use the data, model or code in this repo. A paper will be released very soon.
 
 ```
-@misc{bactrian,
-  author = {Haonan Li and Fajri Koto and Minghao Wu and Alham Fikri Aji and Timothy Baldwin},
-  title = {Bactrian-X: A Multilingual Replicable Instruction-Following Model},
-  year = {2023},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {https://github.com/MBZUAI-nlp/Bactrian-X},
+@misc{li2023bactrianx,
+      title={Bactrian-X : A Multilingual Replicable Instruction-Following Model with Low-Rank Adaptation}, 
+      author={Haonan Li and Fajri Koto and Minghao Wu and Alham Fikri Aji and Timothy Baldwin},
+      year={2023},
+      eprint={2305.15011},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
 }
 ```
 
