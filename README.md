@@ -50,61 +50,60 @@ We curate our [Bactrian instruction dataset](https://huggingface.co/datasets/MBZ
 we noticed that the performance of the languages that not covered by the original LLM pretraining may not satifactory.
 So we recommand users to choose the model by considering whether the languages were covered.
 The datasets, Bactrian-ISO code, and the LLM models langauge coverage were listed below.
-
-| No | Languages       | Code and Data                                                               | LLaMA    | Bloom     |
-| ---|---------------- | ------------------------------------------------------------------------    | ------   | --------- |
-|  1 | Afrikaans       | [af_ZA](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/af/train)  |          |           |
-|  2 | Arabic          | [ar_AR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ar/train)  |          | &#x2713;  |
-|  3 | Azerbaijani     | [az_AZ](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/az/train)  |          |           |
-|  4 | Bengali         | [bn_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/bn/train)  |          |           |
-|  5 | Czech           | [cs_CZ](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/cs/train)  | &#x2713; |           |
-|  6 | German          | [de_DE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/de/train)  | &#x2713; |           |
-|  7 | English         | [en_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/en/train)  | &#x2713; | &#x2713;  |
-|  8 | Spanish         | [es_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/es/train)  | &#x2713; | &#x2713;  |
-|  9 | Estonian        | [et_EE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/et/train)  |          |           |
-| 10 | Persian         | [fa_IR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fa/train)  |          |           |
-| 11 | Finnish         | [fi_FI](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fi/train)  |          |           |
-| 12 | French          | [fr_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fr/train)  | &#x2713; | &#x2713;  |
-| 13 | Galician        | [gl_ES](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/gl/train)  |          |           |
-| 14 | Gujarati        | [gu_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/gu/train)  |          | &#x2713;  |
-| 15 | Hebrew          | [he_IL](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/he/train)  |          |           |
-| 16 | Hindi           | [hi_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/hi/train)  |          | &#x2713;  |
-| 17 | Croatian        | [hr_HR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/hr/train)  | &#x2713; |           |
-| 18 | Indonesian      | [id_ID](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/id/train)  |          | &#x2713;  |
-| 19 | Italian         | [it_IT](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/it/train)  | &#x2713; |           |
-| 20 | Japanese        | [ja_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ja/train)  |          |           |
-| 21 | Georgian        | [ka_GE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ka/train)  |          |           |
-| 22 | Kazakh          | [kk_KZ](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/kk/train)  |          |           |
-| 23 | Khmer           | [km_KH](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/km/train)  |          |           |
-| 24 | Korean          | [ko_KR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ko/train)  |          |           |
-| 25 | Lithuanian      | [lt_LT](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/lt/train)  |          |           |
-| 26 | Latvian         | [lv_LV](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/lv/train)  |          |           |
-| 27 | Macedonian      | [mk_MK](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/mk/train)  |          |           |
-| 28 | Malayalam       | [ml_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ml/train)  |          | &#x2713;  |
-| 29 | Mongolian       | [mn_MN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/mn/train)  |          |           |
-| 30 | Marathi         | [mr_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/mr/train)  |          | &#x2713;  |
-| 31 | Burmese         | [my_MM](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/my/train)  |          |           |
-| 32 | Nepali          | [ne_NP](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ne/train)  |          | &#x2713;  |
-| 33 | Dutch           | [nl_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/nl/train)  | &#x2713; |           |
-| 34 | Polish          | [pl_PL](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/pl/train)  | &#x2713; |           |
-| 35 | Pashto          | [ps_AF](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ps/train)  |          |           |
-| 36 | Portuguese      | [pt_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/pt/train)  | &#x2713; | &#x2713;  |
-| 37 | Romanian        | [ro_RO](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ro/train)  | &#x2713; |           |
-| 38 | Russian         | [ru_RU](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ru/train)  | &#x2713; |           |
-| 39 | Sinhala         | [si_LK](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/si/train)  |          |           |
-| 40 | Slovene         | [sl_SI](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/sl/train)  | &#x2713; |           |
-| 41 | Swedish         | [sv_SE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/sv/train)  | &#x2713; |           |
-| 42 | Swahili         | [sw_KE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/sw/train)  |          | &#x2713;  |
-| 43 | Tamil           | [ta_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ta/train)  |          | &#x2713;  |
-| 44 | Telugu          | [te_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/te/train)  |          | &#x2713;  |
-| 45 | Thai            | [th_TH](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/th/train)  |          |           |
-| 46 | Tagalog         | [tl_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/tl/train)  |          |           |
-| 47 | Turkish         | [tr_TR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/tr/train)  |          |           |
-| 48 | Ukrainian       | [uk_UA](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/uk/train)  | &#x2713; |           |
-| 49 | Urdu            | [ur_PK](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ur/train)  |          | &#x2713;  |
-| 50 | Vietnamese      | [vi_VN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/vi/train)  |          | &#x2713;  |
-| 51 | Xhosa           | [xh_ZA](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/xh/train)  |          | &#x2713;  |
-| 52 | Chinese         | [zh_CN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/zh/train)  |          | &#x2713;  |
+| No | Languages       | Code and Data                                                               | LLaMA    | Bloom     | mT5      |
+| ---|---------------- | ------------------------------------------------------------------------    | ------   | --------- | -------- |
+|  1 | Afrikaans       | [af_ZA](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/af/train)  |          |           | &#x2713; |
+|  2 | Arabic          | [ar_AR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ar/train)  |          | &#x2713;  | &#x2713; |
+|  3 | Azerbaijani     | [az_AZ](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/az/train)  |          |           | &#x2713; |
+|  4 | Bengali         | [bn_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/bn/train)  |          |           | &#x2713; |
+|  5 | Czech           | [cs_CZ](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/cs/train)  | &#x2713; |           | &#x2713; |
+|  6 | German          | [de_DE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/de/train)  | &#x2713; |           | &#x2713; |
+|  7 | English         | [en_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/en/train)  | &#x2713; | &#x2713;  | &#x2713; |
+|  8 | Spanish         | [es_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/es/train)  | &#x2713; | &#x2713;  | &#x2713; |
+|  9 | Estonian        | [et_EE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/et/train)  |          |           | &#x2713; |
+| 10 | Persian         | [fa_IR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fa/train)  |          |           | &#x2713; |
+| 11 | Finnish         | [fi_FI](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fi/train)  |          |           | &#x2713; |
+| 12 | French          | [fr_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/fr/train)  | &#x2713; | &#x2713;  | &#x2713; |
+| 13 | Galician        | [gl_ES](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/gl/train)  |          |           | &#x2713; |
+| 14 | Gujarati        | [gu_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/gu/train)  |          | &#x2713;  | &#x2713; |
+| 15 | Hebrew          | [he_IL](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/he/train)  |          |           |          |
+| 16 | Hindi           | [hi_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/hi/train)  |          | &#x2713;  | &#x2713; |
+| 17 | Croatian        | [hr_HR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/hr/train)  | &#x2713; |           |          |
+| 18 | Indonesian      | [id_ID](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/id/train)  |          | &#x2713;  | &#x2713; |
+| 19 | Italian         | [it_IT](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/it/train)  | &#x2713; |           | &#x2713; |
+| 20 | Japanese        | [ja_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ja/train)  |          |           | &#x2713; |
+| 21 | Georgian        | [ka_GE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ka/train)  |          |           | &#x2713; |
+| 22 | Kazakh          | [kk_KZ](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/kk/train)  |          |           | &#x2713; |
+| 23 | Khmer           | [km_KH](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/km/train)  |          |           | &#x2713; |
+| 24 | Korean          | [ko_KR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ko/train)  |          |           | &#x2713; |
+| 25 | Lithuanian      | [lt_LT](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/lt/train)  |          |           | &#x2713; |
+| 26 | Latvian         | [lv_LV](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/lv/train)  |          |           | &#x2713; |
+| 27 | Macedonian      | [mk_MK](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/mk/train)  |          |           | &#x2713; |
+| 28 | Malayalam       | [ml_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ml/train)  |          | &#x2713;  | &#x2713; |
+| 29 | Mongolian       | [mn_MN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/mn/train)  |          |           | &#x2713; |
+| 30 | Marathi         | [mr_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/mr/train)  |          | &#x2713;  | &#x2713; |
+| 31 | Burmese         | [my_MM](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/my/train)  |          |           | &#x2713; |
+| 32 | Nepali          | [ne_NP](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ne/train)  |          | &#x2713;  | &#x2713; |
+| 33 | Dutch           | [nl_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/nl/train)  | &#x2713; |           | &#x2713; |
+| 34 | Polish          | [pl_PL](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/pl/train)  | &#x2713; |           | &#x2713; |
+| 35 | Pashto          | [ps_AF](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ps/train)  |          |           | &#x2713; |
+| 36 | Portuguese      | [pt_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/pt/train)  | &#x2713; | &#x2713;  | &#x2713; |
+| 37 | Romanian        | [ro_RO](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ro/train)  | &#x2713; |           | &#x2713; |
+| 38 | Russian         | [ru_RU](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ru/train)  | &#x2713; |           | &#x2713; |
+| 39 | Sinhala         | [si_LK](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/si/train)  |          |           | &#x2713; |
+| 40 | Slovene         | [sl_SI](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/sl/train)  | &#x2713; |           | &#x2713; |
+| 41 | Swedish         | [sv_SE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/sv/train)  | &#x2713; |           |          |
+| 42 | Swahili         | [sw_KE](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/sw/train)  |          | &#x2713;  | &#x2713; |
+| 43 | Tamil           | [ta_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ta/train)  |          | &#x2713;  | &#x2713; |
+| 44 | Telugu          | [te_IN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/te/train)  |          | &#x2713;  | &#x2713; |
+| 45 | Thai            | [th_TH](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/th/train)  |          |           | &#x2713; |
+| 46 | Tagalog         | [tl_XX](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/tl/train)  |          |           |          |
+| 47 | Turkish         | [tr_TR](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/tr/train)  |          |           | &#x2713; |
+| 48 | Ukrainian       | [uk_UA](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/uk/train)  | &#x2713; |           | &#x2713; |
+| 49 | Urdu            | [ur_PK](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/ur/train)  |          | &#x2713;  | &#x2713; |
+| 50 | Vietnamese      | [vi_VN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/vi/train)  |          | &#x2713;  | &#x2713; |
+| 51 | Xhosa           | [xh_ZA](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/xh/train)  |          | &#x2713;  | &#x2713; |
+| 52 | Chinese         | [zh_CN](https://huggingface.co/datasets/MBZUAI/Bactrian-X/viewer/zh/train)  |          | &#x2713;  | &#x2713; |
 -->
 
 
@@ -134,7 +133,7 @@ Models are trained with the following hyperparameters:
 | Hyper-parameter | Bactrian-X |
 | --------------- | ---------- |
 | batch_size      | 128        |
-| num_epochs      | 10         |
+| num_epochs      | 4          |
 | learning_rate   | 3e-4       |
 | cutoff_len      | 768        |
 | lora_r          | 64         |
@@ -146,14 +145,15 @@ Below is a command to train a LLaMA-7B adapter with our datasets in specific lan
 # Script to train on 4x Nvidia A100 80GB gpus
 WORLD_SIZE=4
 CUDA_VISIBLE_DEVICES=0,1,2,3
-torchrun --nproc_per_node=4 --master_port=1234 finetune_hf.py \
+torchrun --nproc_per_node=4 --master_port=1234 finetune.py \
     --model_name_or_path decapoda-research/llama-7b-hf \
     --lang <lang_iso> \
     --output_dir <your_output_dir> \
+    --load_in_8bit \
     --per_device_train_batch_size 32 \
     --per_device_eval_batch_size 4 \
     --gradient_accumulation_steps 1 \
-    --num_train_epochs 10 \
+    --num_train_epochs 8 \
     --model_max_length 768 \
     --learning_rate 3e-4 \
     --val_set_size 2000 \

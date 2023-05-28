@@ -1,0 +1,6 @@
+{
+    "description": "Template used by Bactrian-X for encoder-decoder model.",
+    "prompt_input": "{instruction}\n{input}",
+    "prompt_no_input": "{instruction}",
+    "response_split": ""    
+}

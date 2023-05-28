@@ -12,10 +12,11 @@ from dataclasses import dataclass, field
 import torch
 import datasets
 import transformers
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaTokenizer, Trainer, HfArgumentParser, TrainingArguments
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, Seq2SeqTrainer, HfArgumentParser, Seq2SeqTrainingArguments
 from datasets import load_dataset, concatenate_datasets, DatasetDict
 
 from peft import (
+    TaskType,
     LoraConfig,
     get_peft_model,
     get_peft_model_state_dict,
@@ -45,12 +46,15 @@ class ModelArguments:
     lora_r: int = field(default=8, metadata={"help": "Lora rank."})
     lora_alpha: int = field(default=16, metadata={"help": "Lora alpha."})
     lora_dropout: float = field(default=0.05, metadata={"help": "Lora dropout."})
-    lora_target_modules: str = field(default="q_proj,v_proj", metadata={"help": "Names of the modules to apply Lora to."})
+    lora_target_modules: str = field(default="q,v", metadata={"help": "Names of the modules to apply Lora to."})
 
 
 @dataclass
 class DataArguments:
     data_path: Optional[str] = field(default='MBZUAI/Bactrian-X', metadata={"help": "Path to the training file."})
+    source_max_length: Optional[int] = field(
+        default=256, metadata={"help": "Maximum length of source. Sequences will be right padded (and possibly truncated)."}
+    )
     model_max_length: Optional[int] = field(
         default=1024, metadata={"help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."}
     )
@@ -60,14 +64,14 @@ class DataArguments:
     val_set_size: Optional[int] = field(default=2000, metadata={"help": "The validation set size. For loss checking."})
 
 @dataclass
-class BactrianTrainingArguments(TrainingArguments):
+class BactrianTrainingArguments(Seq2SeqTrainingArguments):
     optim: str = field(default="adamw_torch", metadata={"help": "Optimizer to use."})
     fp16: bool = field(
-        default=True, metadata={"help": "Whether to use fp16 16-bit (mixed) precision training instead of 32-bit training."}
+        default=False, metadata={"help": "Whether to use fp16 16-bit (mixed) precision training instead of 32-bit training. Not recommand for mT5"}
     )
     lang: str = field(default="zh", metadata={"help": "The language or language list separated by `,`, dataset will be downlaoded from HF Hub."})
     template_dir: str = field(default="./templates", metadata={"help": "Prompt template dir."})
-    prompt_template_name: str = field(default="bactrian", metadata={"help": "Prompt template file to use."})
+    prompt_template_name: str = field(default="bactrian_seq2seq", metadata={"help": "Prompt template file to use."})
     evaluation_strategy: str = field(default="steps", metadata={"help": ""})
     save_strategy: str = field(default="steps", metadata={"help": ""})
     wandb_project: str = field(default="bactrian", metadata={"help": "Weight & Bias (W&B) project name."})
@@ -139,36 +143,19 @@ def train():
     if 'wandb' in training_args.report_to:
          os.environ["WANDB_PROJECT"] = training_args.wandb_project
 
-    model = AutoModelForCausalLM.from_pretrained(
+    model = AutoModelForSeq2SeqLM.from_pretrained(
         model_args.model_name_or_path,
-        torch_dtype=torch.float16,
+        # torch_dtype=torch.float16, # Result in collapse
         load_in_8bit=model_args.load_in_8bit,
         device_map=device_map,
     )
 
-    # TODO: better handle
-    tokenizer_class = LlamaTokenizer if "llama" in model_args.model_name_or_path else AutoTokenizer
-    tokenizer = tokenizer_class.from_pretrained(
+    # todo: better handle
+    tokenizer = AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
         padding_side="right",
-        use_fast=False,
+        use_fast=True,
     )
-
-    # llama has no pad_token
-    if tokenizer.pad_token is None:
-        smart_tokenizer_and_embedding_resize(
-            special_tokens_dict=dict(pad_token=DEFAULT_PAD_TOKEN),
-            tokenizer=tokenizer,
-            model=model,
-        )
-    if "llama" in model_args.model_name_or_path:
-        tokenizer.add_special_tokens(
-            {
-                "eos_token": DEFAULT_EOS_TOKEN,
-                "bos_token": DEFAULT_BOS_TOKEN,
-                "unk_token": DEFAULT_UNK_TOKEN,
-            }
-        )
 
     if model_args.load_in_8bit:
         model = prepare_model_for_int8_training(model)
@@ -181,7 +168,7 @@ def train():
         target_modules = model_args.lora_target_modules.split(','),
         lora_dropout = model_args.lora_dropout,
         bias = "none",
-        task_type = "CAUSAL_LM",
+        task_type = TaskType.SEQ_2_SEQ_LM,
     )
     model = get_peft_model(model, config)
     model.print_trainable_parameters()
@@ -194,22 +181,16 @@ def train():
 
 
     # Determine model_max_length for truncation
+    source_max_length = data_args.source_max_length
     model_max_length = data_args.model_max_length
 
     def generate_and_tokenize_prompt(data_point):
-        full_prompt = prompter.generate_prompt(
-            data_point["instruction"],
-            data_point["input"],
-            data_point["output"],
-        )
         user_prompt = prompter.generate_prompt(
             data_point["instruction"], data_point["input"]
         )
-        user_prompt_len = len(tokenizer(user_prompt, truncation=True, max_length=model_max_length)["input_ids"])
-        tokenized_full_prompt = tokenizer(full_prompt + tokenizer.eos_token, truncation=True, max_length=model_max_length)
-        tokenized_full_prompt["labels"] = [IGNORE_INDEX] * user_prompt_len + tokenized_full_prompt["input_ids"].copy()[user_prompt_len:]
-        tokenized_full_prompt.pop('attention_mask')
-        return tokenized_full_prompt
+        source_ids = tokenizer(text=user_prompt, truncation=True, max_length=source_max_length)["input_ids"]
+        target_ids = tokenizer(text_target=data_point["output"], truncation=True, max_length=model_max_length-source_max_length)["input_ids"]
+        return {"input_ids":source_ids, "labels":target_ids}
 
 
     if data_args.val_set_size > 0:
@@ -233,8 +214,7 @@ def train():
         desc="preprocess val data set",
     )
 
-
-    trainer = Trainer(
+    trainer = Seq2SeqTrainer(
         model = model,
         train_dataset = train_data,
         eval_dataset = val_data,
