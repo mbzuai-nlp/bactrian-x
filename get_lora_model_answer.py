@@ -15,7 +15,7 @@ from utils.prompter import Prompter
 def run_eval(args):
     # split question file into num_gpus files
     ques_jsons = []
-    with open(args.question_file, "r") as ques_file:
+    with open(args.question_file, "r", encoding="utf-8") as ques_file:
         for line in ques_file:
             ques_jsons.append(line)
 
